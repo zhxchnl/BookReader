@@ -1,0 +1,84 @@
+name: iOS Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
+
+      - name: Verify Xcode
+        run: xcodebuild -version
+
+      - name: Install XcodeGen
+        run: |
+          which xcodegen || brew install xcodegen
+
+      - name: Generate Xcode project
+        run: |
+          xcodegen generate
+
+      - name: Build iOS project
+        env:
+          CODE_SIGNING_ALLOWED: NO
+        run: |
+          xcodebuild -project BookReader.xcodeproj -scheme BookReader \
+            -configuration Debug \
+            -destination 'platform=iOS Simulator,name=iPhone 13 Pro' \
+            build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            build/*.xcarchive
+            *.xcodeproj
+
+  archive-only:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_15.2.app/Contents/Developer
+
+      - name: Install XcodeGen
+        run: |
+          which xcodegen || brew install xcodegen
+
+      - name: Generate Xcode project
+        run: |
+          xcodegen generate
+
+      - name: Create archive
+        env:
+          CODE_SIGNING_ALLOWED: NO
+        run: |
+          mkdir -p build
+          xcodebuild -project BookReader.xcodeproj -scheme BookReader \
+            -sdk iphoneos \
+            -configuration Release \
+            archive \
+            -archivePath build/BookReader.xcarchive \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+
+      - name: Upload archive
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-archive
+          path: build/BookReader.xcarchive
