@@ -87,14 +87,14 @@ struct VoiceSelectionView: View {
 
     private var groupedVoices: [String: [AVSpeechSynthesisVoice]] {
         Dictionary(grouping: availableVoices) { voice in
-            voice.language.starts(with: "zh") ? "中文" : "英文"
+            voice.languageMinimalIdentifier.hasPrefix("zh") ? "中文" : "英文"
         }
     }
 
     private var availableVoices: [AVSpeechSynthesisVoice] {
         AVSpeechSynthesisVoice.speechVoices().filter { voice in
-            voice.language.starts(with: "zh") || voice.language.starts(with: "en")
-        }.sorted { $0.language < $1.language }
+            voice.languageMinimalIdentifier.hasPrefix("zh") || voice.languageMinimalIdentifier.hasPrefix("en")
+        }.sorted { $0.languageMinimalIdentifier < $1.languageMinimalIdentifier }
     }
 
     var body: some View {

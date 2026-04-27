@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 struct ReaderView: View {
     @EnvironmentObject var libraryViewModel: LibraryViewModel
@@ -123,7 +124,7 @@ struct ReaderView: View {
                     }
 
                     Button(action: { viewModel.toggleTTS() }) {
-                        Image(systemName: viewModel.ttsService.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                        Image(systemName: viewModel.isTTSPlaying ? "pause.circle.fill" : "play.circle.fill")
                             .font(.system(size: 44))
                     }
                     .foregroundColor(.blue)
@@ -260,12 +261,12 @@ struct TTSSettingsSheet: View {
 
     private var availableVoices: [AVSpeechSynthesisVoice] {
         AVSpeechSynthesisVoice.speechVoices().filter { voice in
-            voice.language.starts(with: "zh") || voice.language.starts(with: "en")
+            voice.languageMinimalIdentifier.hasPrefix("zh") || voice.languageMinimalIdentifier.hasPrefix("en")
         }
     }
 
     private func voiceDisplayName(_ voice: AVSpeechSynthesisVoice) -> String {
-        let language = voice.language.starts(with: "zh") ? "中文" : "英文"
+        let language = voice.languageMinimalIdentifier.hasPrefix("zh") ? "中文" : "英文"
         let quality = voice.quality == .enhanced ? "高品质" : "标准"
         return "\(language) - \(voice.name) (\(quality))"
     }

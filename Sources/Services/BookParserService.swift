@@ -205,7 +205,7 @@ final class BookParserService {
     }
 
     private func parseXHTML(data: Data) -> String {
-        guard let htmlString = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .iso8859-1) else {
+        guard let htmlString = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .isoLatin1) else {
             return ""
         }
 
@@ -213,27 +213,33 @@ final class BookParserService {
 
         content = content.replacingOccurrences(of: "<[^>]+>", with: " ", options: .regularExpression)
 
-        let entities = [
-            "&nbsp;": " ",
-            "&amp;": "&",
-            "&lt;": "<",
-            "&gt;": ">",
-            "&quot;": "\"",
-            "&#\\d+;": { (match: String) -> String in
-                let digits = match.dropFirst(2).dropLast()
-                if let code = Int(digits), let scalar = Unicode.Scalar(code) {
-                    return String(Character(scalar))
-                }
-                return ""
-            }
+        let staticEntities: [(String, String)] = [
+            ("&nbsp;", " "),
+            ("&amp;", "&"),
+            ("&lt;", "<"),
+            ("&gt;", ">"),
+            ("&quot;", "\"")
         ]
+        for (pattern, replacement) in staticEntities {
+            content = content.replacingOccurrences(of: pattern, with: replacement)
+        }
 
-        for (pattern, replacement) in entities {
-            if pattern.hasPrefix("&#") {
-                content = content.replacingOccurrences(of: pattern, with: replacement("&#32;"))
-            } else {
-                content = content.replacingOccurrences(of: pattern, with: replacement as? String ?? "")
+        if let regex = try? NSRegularExpression(pattern: "&#\\d+;", options: []) {
+            let mutable = NSMutableString(string: content)
+            let fullRange = NSRange(location: 0, length: mutable.length)
+            let matches = regex.matches(in: mutable as String, options: [], range: fullRange)
+            for match in matches.reversed() {
+                let token = mutable.substring(with: match.range)
+                let digits = token.dropFirst(2).dropLast()
+                let replacement: String
+                if let code = Int(digits), let scalar = Unicode.Scalar(code) {
+                    replacement = String(Character(scalar))
+                } else {
+                    replacement = ""
+                }
+                mutable.replaceCharacters(in: match.range, with: replacement)
             }
+            content = mutable as String
         }
 
         content = content.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)

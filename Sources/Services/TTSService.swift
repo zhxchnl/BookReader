@@ -35,8 +35,13 @@ final class TTSService: NSObject, ObservableObject {
         ]
 
         availableVoices = AVSpeechSynthesisVoice.speechVoices().filter { voice in
-            locales.contains(where: { $0.identifier == voice.language || voice.language.starts(with: $0.language) })
-        }.sorted { $0.language < $1.language }
+            let v = voice.languageMinimalIdentifier
+            return locales.contains { loc in
+                let id = loc.identifier.lowercased()
+                let short = id.split(separator: "-").first.map(String.init) ?? id
+                return v == id || v.hasPrefix(short)
+            }
+        }.sorted { $0.languageMinimalIdentifier < $1.languageMinimalIdentifier }
     }
 
     func loadChapters(_ chapters: [Chapter]) {
@@ -99,8 +104,9 @@ final class TTSService: NSObject, ObservableObject {
         }
 
         let preferredLanguage = settings.selectedVoiceIdentifier.hasPrefix("zh") ? "zh-CN" : "en-US"
+        let prefix = preferredLanguage.split(separator: "-").first.map(String.init) ?? preferredLanguage
         return AVSpeechSynthesisVoice.speechVoices().first { voice in
-            voice.language.starts(with: preferredLanguage)
+            voice.languageMinimalIdentifier.hasPrefix(prefix.lowercased())
         }
     }
 
@@ -141,7 +147,7 @@ final class TTSService: NSObject, ObservableObject {
     func skipToChapter(_ index: Int) {
         guard index < chapters.count else { return }
         synthesizer.stopSpeaking(at: .immediate)
-        speak(chapterIndex: index, sentenceIndex: findFirstSentenceIndex(for: index))
+        speak(from: index, sentenceIndex: findFirstSentenceIndex(for: index))
     }
 
     func seekToProgress(_ progress: Double) {
@@ -149,10 +155,10 @@ final class TTSService: NSObject, ObservableObject {
         let (targetChapter, targetSentence) = findChapterAndSentence(for: targetCharacters)
 
         synthesizer.stopSpeaking(at: .immediate)
-        speak(chapterIndex: targetChapter, sentenceIndex: targetSentence)
+        speak(from: targetChapter, sentenceIndex: targetSentence)
     }
 
-    private func findFirstSentenceIndex(for chapterIndex: Int) -> Int {
+    func findFirstSentenceIndex(for chapterIndex: Int) -> Int {
         var count = 0
         for i in 0..<chapterIndex {
             count += splitIntoSentences(chapters[i].content).count
@@ -220,6 +226,13 @@ final class TTSService: NSObject, ObservableObject {
 
     func getCurrentSettings() -> TTSSettings {
         return settings
+    }
+}
+
+extension AVSpeechSynthesisVoice {
+    /// Lowercased BCP 47 tag; avoids passing `Locale.language` (`Locale.Language`) into `String.starts(with:)`.
+    var languageMinimalIdentifier: String {
+        language.lowercased()
     }
 }
 

@@ -2,7 +2,7 @@ name: BookReader
 options:
   bundleIdPrefix: com.bookreader
   deploymentTarget:
-    iOS: "15.0"
+    iOS: "17.0"
   xcodeVersion: "15.0"
   generateEmptyDirectories: true
 
