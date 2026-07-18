@@ -1,0 +1,11 @@
+Resources/Models/*
+BookReader-models-*.tar.bz2
+.DS_Store
+
+# Swift Package 本地缓存和下载的二进制
+Packages/SherpaOnnx/.swiftpm/
+Packages/SherpaOnnx/Frameworks/
+
+# 本地测试书籍
+*.epub
+*.txt

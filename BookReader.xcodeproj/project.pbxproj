@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0906169F32273EDD1C0D3E12 /* SherpaOnnxTTSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27104DDC8271AA2FE215D1F4 /* SherpaOnnxTTSProvider.swift */; };
+		0E6BD9F02D288D717EDD4363 /* SherpaOnnxOfflineTTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0EADA70353C6D48B9F3485E /* SherpaOnnxOfflineTTS.swift */; };
+		0EE36986D650C47218850A9B /* SherpaOnnxModelDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCC0003424283090AAE6B48 /* SherpaOnnxModelDownloader.swift */; };
+		16A9BB807F2EF52F8970E6AC /* ReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52078DC570D85F9039A0BB71 /* ReaderView.swift */; };
+		1D3A7BC0C341ABC854437964 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303496EFE3CEBC735106D415 /* TTSService.swift */; };
+		27876AD0D799779E667F1450 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB5F47A9AD4826186F400C6 /* SearchResult.swift */; };
+		2C84A0F1932A4D1160E009A2 /* BookParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFDB4F0020F6F4A7CC437D1E /* BookParserService.swift */; };
+		42302EF5B1EB2B5FFAAA43ED /* TTSAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D7F764A865033703C1EB67 /* TTSAudioPlayer.swift */; };
+		4260BE869C561D9A82B993C1 /* ReadingProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1D108155A06339DF0E61A /* ReadingProgress.swift */; };
+		42C886C5881503DDCE534EDA /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = E6695247A0D89B8A093E1168 /* ZIPFoundation */; };
+		4D6FD7D1F55B489387EE636B /* matcha-zh in Resources */ = {isa = PBXBuildFile; fileRef = 3865A57CEE6C2E8959669330 /* matcha-zh */; };
+		5CF717103D4EA0B5A231F227 /* SwiftEdgeTTS in Frameworks */ = {isa = PBXBuildFile; productRef = F51ADE66C47AC87954378EC2 /* SwiftEdgeTTS */; };
+		67EC01F13F3BED6EA5B36454 /* EdgeTTSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C04BD45C5DA7BAF835B25F /* EdgeTTSProvider.swift */; };
+		681C1A1D886F1EB410AF1AB1 /* sherpa-onnx.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF235534BECAFF1388EF4DDB /* sherpa-onnx.xcframework */; };
+		69529DBD6247589B00EB6449 /* BookReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24AF4C99CB19FF7DC771BD3 /* BookReaderApp.swift */; };
+		6E9C1602C481ED03A67EAD01 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 7EA801757C05D4621A02C3BD /* SQLite */; };
+		6FB3F9DF53E69C3212C78771 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD72E491915F3A8E02C7CC1 /* Extensions.swift */; };
+		753D6329ECEC9C51A671E382 /* TTSModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A4921F968DEE474E8ECB7 /* TTSModels.swift */; };
+		7C85DCF982C6ABC958A6E643 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA84277A701913C360E078D /* DatabaseManager.swift */; };
+		9711586019E814D7F8DDDD41 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0A15FF87E256C32AF475D8 /* Book.swift */; };
+		99632BFEB8175D0110F15DE7 /* kokoro-zh in Resources */ = {isa = PBXBuildFile; fileRef = DF01AFAA3C5E611C44DE4673 /* kokoro-zh */; };
+		A291009BD5F344E9C3EE12E9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFF8B07E934AE091828EB0C /* SettingsView.swift */; };
+		AD0BE6CECCD52B42CD0B223C /* SherpaOnnx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C52A96B29EE6DD9EFCE87B7 /* SherpaOnnx.swift */; };
+		B45781031E4A268DA329EFC6 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E6C80E167AB801E7026D4B /* LibraryView.swift */; };
+		BFC2FCA5EF88D5DE0DF07968 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F131CF3BFE7360ECF8C7EE5 /* LibraryViewModel.swift */; };
+		C6111D60D13DCD0A9A2A2996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D72F999A1845FE5FC9A4D24E /* Assets.xcassets */; };
+		CE09DC76FBA9E8B0DF352B01 /* TTSTextSanitizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A750547EDC7C2517E9E591D /* TTSTextSanitizer.swift */; };
+		D83544B03611CF015B80B148 /* TTSSettingsFormSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6662AACDE94CE31430C8779C /* TTSSettingsFormSection.swift */; };
+		DB53C8ACFBD7DB0342A538FC /* ReaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77596391E3C1E10C770000F7 /* ReaderViewModel.swift */; };
+		E39E3B8B26033C9ACF9198BF /* BookStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9ADE2F9B67F0B94855BBE3 /* BookStorage.swift */; };
+		ECF2BE2A43D142859D10A23D /* LocalTTSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5FF2625C7DE29AB7BA8536 /* LocalTTSProvider.swift */; };
+		EEDCF8E1DB636D0A374A6598 /* FileImportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE04A155DF608FB4D8F572 /* FileImportService.swift */; };
+		F1E4D906DC9D958C48857D63 /* OfflineModelTuningSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65D37E532F4CC4C33D914CF /* OfflineModelTuningSection.swift */; };
+		FE4AD7D78469A6DD6461F807 /* OfflineModelTuning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656907914F2BC9446079676A /* OfflineModelTuning.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0AA3869243ECDBE76564DB87 /* BookReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F131CF3BFE7360ECF8C7EE5 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		1DA84277A701913C360E078D /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		1DFF8B07E934AE091828EB0C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1E855C56B2829FB54377B9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		27104DDC8271AA2FE215D1F4 /* SherpaOnnxTTSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpaOnnxTTSProvider.swift; sourceTree = "<group>"; };
+		29FE04A155DF608FB4D8F572 /* FileImportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileImportService.swift; sourceTree = "<group>"; };
+		303496EFE3CEBC735106D415 /* TTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSService.swift; sourceTree = "<group>"; };
+		3865A57CEE6C2E8959669330 /* matcha-zh */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "matcha-zh"; path = "Resources/Models/matcha-zh"; sourceTree = SOURCE_ROOT; };
+		4A750547EDC7C2517E9E591D /* TTSTextSanitizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSTextSanitizer.swift; sourceTree = "<group>"; };
+		4DB5F47A9AD4826186F400C6 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		52078DC570D85F9039A0BB71 /* ReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderView.swift; sourceTree = "<group>"; };
+		61D7F764A865033703C1EB67 /* TTSAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSAudioPlayer.swift; sourceTree = "<group>"; };
+		656907914F2BC9446079676A /* OfflineModelTuning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModelTuning.swift; sourceTree = "<group>"; };
+		6662AACDE94CE31430C8779C /* TTSSettingsFormSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSSettingsFormSection.swift; sourceTree = "<group>"; };
+		686A4921F968DEE474E8ECB7 /* TTSModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSModels.swift; sourceTree = "<group>"; };
+		6C52A96B29EE6DD9EFCE87B7 /* SherpaOnnx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpaOnnx.swift; sourceTree = "<group>"; };
+		77596391E3C1E10C770000F7 /* ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewModel.swift; sourceTree = "<group>"; };
+		79A1D108155A06339DF0E61A /* ReadingProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingProgress.swift; sourceTree = "<group>"; };
+		9BCC0003424283090AAE6B48 /* SherpaOnnxModelDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpaOnnxModelDownloader.swift; sourceTree = "<group>"; };
+		9D0A15FF87E256C32AF475D8 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		A0EADA70353C6D48B9F3485E /* SherpaOnnxOfflineTTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SherpaOnnxOfflineTTS.swift; sourceTree = "<group>"; };
+		A65D37E532F4CC4C33D914CF /* OfflineModelTuningSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModelTuningSection.swift; sourceTree = "<group>"; };
+		BF235534BECAFF1388EF4DDB /* sherpa-onnx.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "sherpa-onnx.xcframework"; path = "Packages/SherpaOnnx/Frameworks/sherpa-onnx.xcframework"; sourceTree = "<group>"; };
+		C7C04BD45C5DA7BAF835B25F /* EdgeTTSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeTTSProvider.swift; sourceTree = "<group>"; };
+		C8E6C80E167AB801E7026D4B /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		CE5FF2625C7DE29AB7BA8536 /* LocalTTSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTTSProvider.swift; sourceTree = "<group>"; };
+		CE9ADE2F9B67F0B94855BBE3 /* BookStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookStorage.swift; sourceTree = "<group>"; };
+		D24AF4C99CB19FF7DC771BD3 /* BookReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookReaderApp.swift; sourceTree = "<group>"; };
+		D72F999A1845FE5FC9A4D24E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DF01AFAA3C5E611C44DE4673 /* kokoro-zh */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "kokoro-zh"; path = "Resources/Models/kokoro-zh"; sourceTree = SOURCE_ROOT; };
+		DFDB4F0020F6F4A7CC437D1E /* BookParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookParserService.swift; sourceTree = "<group>"; };
+		EDD72E491915F3A8E02C7CC1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1BFF5AC789922E5CEE3B6639 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E9C1602C481ED03A67EAD01 /* SQLite in Frameworks */,
+				42C886C5881503DDCE534EDA /* ZIPFoundation in Frameworks */,
+				5CF717103D4EA0B5A231F227 /* SwiftEdgeTTS in Frameworks */,
+				681C1A1D886F1EB410AF1AB1 /* sherpa-onnx.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		34D394A3CA5E6B94FF337E4C = {
+			isa = PBXGroup;
+			children = (
+				DF01AFAA3C5E611C44DE4673 /* kokoro-zh */,
+				3865A57CEE6C2E8959669330 /* matcha-zh */,
+				D7A8238F388E0928C2097B1D /* Resources */,
+				A7A478B9738791F1E520ADB6 /* SherpaOnnx */,
+				BF18BFB6FE57529C684CF143 /* Sources */,
+				BC4DDED97056AC2351692DAF /* Frameworks */,
+				C9F4CBB2D05F0D9EBFF33A6F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B89C3611A66C415A6ED8D1B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D24AF4C99CB19FF7DC771BD3 /* BookReaderApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		53614BD45AEE016C60A3E6BF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0F131CF3BFE7360ECF8C7EE5 /* LibraryViewModel.swift */,
+				77596391E3C1E10C770000F7 /* ReaderViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A7A478B9738791F1E520ADB6 /* SherpaOnnx */ = {
+			isa = PBXGroup;
+			children = (
+				6C52A96B29EE6DD9EFCE87B7 /* SherpaOnnx.swift */,
+			);
+			name = SherpaOnnx;
+			path = Packages/SherpaOnnx/Sources/SherpaOnnx;
+			sourceTree = "<group>";
+		};
+		B81633A0A5929F935BD08903 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C8E6C80E167AB801E7026D4B /* LibraryView.swift */,
+				A65D37E532F4CC4C33D914CF /* OfflineModelTuningSection.swift */,
+				52078DC570D85F9039A0BB71 /* ReaderView.swift */,
+				1DFF8B07E934AE091828EB0C /* SettingsView.swift */,
+				6662AACDE94CE31430C8779C /* TTSSettingsFormSection.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BC4DDED97056AC2351692DAF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF235534BECAFF1388EF4DDB /* sherpa-onnx.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF18BFB6FE57529C684CF143 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3B89C3611A66C415A6ED8D1B /* App */,
+				DAE37E891A2E6710B67CB20A /* Database */,
+				CDCD0FF4FE313562817CF204 /* Extensions */,
+				F102770205F237A9ADD16102 /* Models */,
+				E1456D5BE4C360528E577541 /* Services */,
+				53614BD45AEE016C60A3E6BF /* ViewModels */,
+				B81633A0A5929F935BD08903 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		C9F4CBB2D05F0D9EBFF33A6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0AA3869243ECDBE76564DB87 /* BookReader.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDCD0FF4FE313562817CF204 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EDD72E491915F3A8E02C7CC1 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D7A8238F388E0928C2097B1D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D72F999A1845FE5FC9A4D24E /* Assets.xcassets */,
+				1E855C56B2829FB54377B9EF /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DAE37E891A2E6710B67CB20A /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				1DA84277A701913C360E078D /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		E1456D5BE4C360528E577541 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DFDB4F0020F6F4A7CC437D1E /* BookParserService.swift */,
+				CE9ADE2F9B67F0B94855BBE3 /* BookStorage.swift */,
+				C7C04BD45C5DA7BAF835B25F /* EdgeTTSProvider.swift */,
+				29FE04A155DF608FB4D8F572 /* FileImportService.swift */,
+				CE5FF2625C7DE29AB7BA8536 /* LocalTTSProvider.swift */,
+				656907914F2BC9446079676A /* OfflineModelTuning.swift */,
+				9BCC0003424283090AAE6B48 /* SherpaOnnxModelDownloader.swift */,
+				A0EADA70353C6D48B9F3485E /* SherpaOnnxOfflineTTS.swift */,
+				27104DDC8271AA2FE215D1F4 /* SherpaOnnxTTSProvider.swift */,
+				61D7F764A865033703C1EB67 /* TTSAudioPlayer.swift */,
+				686A4921F968DEE474E8ECB7 /* TTSModels.swift */,
+				303496EFE3CEBC735106D415 /* TTSService.swift */,
+				4A750547EDC7C2517E9E591D /* TTSTextSanitizer.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F102770205F237A9ADD16102 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9D0A15FF87E256C32AF475D8 /* Book.swift */,
+				79A1D108155A06339DF0E61A /* ReadingProgress.swift */,
+				4DB5F47A9AD4826186F400C6 /* SearchResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E72438A1B6C05D13572136B6 /* BookReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 813D0C7B965630D79BEA72E4 /* Build configuration list for PBXNativeTarget "BookReader" */;
+			buildPhases = (
+				C4D373A88AE706F5AD9922DB /* Sources */,
+				F423D0B5B48E845C7B62DE47 /* Resources */,
+				1BFF5AC789922E5CEE3B6639 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookReader;
+			packageProductDependencies = (
+				7EA801757C05D4621A02C3BD /* SQLite */,
+				E6695247A0D89B8A093E1168 /* ZIPFoundation */,
+				F51ADE66C47AC87954378EC2 /* SwiftEdgeTTS */,
+			);
+			productName = BookReader;
+			productReference = 0AA3869243ECDBE76564DB87 /* BookReader.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B964C429D9BE89FAF2A2F8BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					E72438A1B6C05D13572136B6 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2E55FF14DF44DE4DB7447F14 /* Build configuration list for PBXProject "BookReader" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 34D394A3CA5E6B94FF337E4C;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1D41639E1A1C16EE59A27190 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				F43826F8FF34DDC4C349821A /* XCRemoteSwiftPackageReference "SwiftEdgeTTS" */,
+				8C9828D0E11606BDE21BE2BB /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C9F4CBB2D05F0D9EBFF33A6F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E72438A1B6C05D13572136B6 /* BookReader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F423D0B5B48E845C7B62DE47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6111D60D13DCD0A9A2A2996 /* Assets.xcassets in Resources */,
+				99632BFEB8175D0110F15DE7 /* kokoro-zh in Resources */,
+				4D6FD7D1F55B489387EE636B /* matcha-zh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C4D373A88AE706F5AD9922DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9711586019E814D7F8DDDD41 /* Book.swift in Sources */,
+				2C84A0F1932A4D1160E009A2 /* BookParserService.swift in Sources */,
+				69529DBD6247589B00EB6449 /* BookReaderApp.swift in Sources */,
+				E39E3B8B26033C9ACF9198BF /* BookStorage.swift in Sources */,
+				7C85DCF982C6ABC958A6E643 /* DatabaseManager.swift in Sources */,
+				67EC01F13F3BED6EA5B36454 /* EdgeTTSProvider.swift in Sources */,
+				6FB3F9DF53E69C3212C78771 /* Extensions.swift in Sources */,
+				EEDCF8E1DB636D0A374A6598 /* FileImportService.swift in Sources */,
+				B45781031E4A268DA329EFC6 /* LibraryView.swift in Sources */,
+				BFC2FCA5EF88D5DE0DF07968 /* LibraryViewModel.swift in Sources */,
+				ECF2BE2A43D142859D10A23D /* LocalTTSProvider.swift in Sources */,
+				FE4AD7D78469A6DD6461F807 /* OfflineModelTuning.swift in Sources */,
+				F1E4D906DC9D958C48857D63 /* OfflineModelTuningSection.swift in Sources */,
+				16A9BB807F2EF52F8970E6AC /* ReaderView.swift in Sources */,
+				DB53C8ACFBD7DB0342A538FC /* ReaderViewModel.swift in Sources */,
+				4260BE869C561D9A82B993C1 /* ReadingProgress.swift in Sources */,
+				27876AD0D799779E667F1450 /* SearchResult.swift in Sources */,
+				A291009BD5F344E9C3EE12E9 /* SettingsView.swift in Sources */,
+				AD0BE6CECCD52B42CD0B223C /* SherpaOnnx.swift in Sources */,
+				0EE36986D650C47218850A9B /* SherpaOnnxModelDownloader.swift in Sources */,
+				0E6BD9F02D288D717EDD4363 /* SherpaOnnxOfflineTTS.swift in Sources */,
+				0906169F32273EDD1C0D3E12 /* SherpaOnnxTTSProvider.swift in Sources */,
+				42302EF5B1EB2B5FFAAA43ED /* TTSAudioPlayer.swift in Sources */,
+				753D6329ECEC9C51A671E382 /* TTSModels.swift in Sources */,
+				1D3A7BC0C341ABC854437964 /* TTSService.swift in Sources */,
+				D83544B03611CF015B80B148 /* TTSSettingsFormSection.swift in Sources */,
+				CE09DC76FBA9E8B0DF352B01 /* TTSTextSanitizer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3DCB17EAA10AE870A76B2660 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		61327FB11382A7D438DB8CDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9AF8720279EBEFABF340ABE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W7F622W5N4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Packages/SherpaOnnx/Frameworks\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Packages/SherpaOnnx/Frameworks/onnxruntime.xcframework/$(SHERPA_SLICE)/Headers",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "书阅读";
+				INFOPLIST_KEY_CFBundleIdentifier = com.zxcstc123.bookreader;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lc++",
+					"-force_load",
+					"$(SRCROOT)/Packages/SherpaOnnx/Frameworks/onnxruntime.xcframework/$(SHERPA_SLICE)/libonnxruntime.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zxcstc123.bookreader;
+				SDKROOT = iphoneos;
+				"SHERPA_SLICE[sdk=iphoneos*]" = "ios-arm64";
+				"SHERPA_SLICE[sdk=iphonesimulator*]" = "ios-arm64_x86_64-simulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SHERPA_ONNX_ENABLED";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E8738CF9F0F1B4FB6C9D721F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W7F622W5N4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Packages/SherpaOnnx/Frameworks\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Packages/SherpaOnnx/Frameworks/onnxruntime.xcframework/$(SHERPA_SLICE)/Headers",
+				);
+				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "书阅读";
+				INFOPLIST_KEY_CFBundleIdentifier = com.zxcstc123.bookreader;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-lc++",
+					"-force_load",
+					"$(SRCROOT)/Packages/SherpaOnnx/Frameworks/onnxruntime.xcframework/$(SHERPA_SLICE)/libonnxruntime.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zxcstc123.bookreader;
+				SDKROOT = iphoneos;
+				"SHERPA_SLICE[sdk=iphoneos*]" = "ios-arm64";
+				"SHERPA_SLICE[sdk=iphonesimulator*]" = "ios-arm64_x86_64-simulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SHERPA_ONNX_ENABLED";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E55FF14DF44DE4DB7447F14 /* Build configuration list for PBXProject "BookReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61327FB11382A7D438DB8CDA /* Debug */,
+				3DCB17EAA10AE870A76B2660 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		813D0C7B965630D79BEA72E4 /* Build configuration list for PBXNativeTarget "BookReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8738CF9F0F1B4FB6C9D721F /* Debug */,
+				9AF8720279EBEFABF340ABE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D41639E1A1C16EE59A27190 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.1;
+			};
+		};
+		8C9828D0E11606BDE21BE2BB /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.18;
+			};
+		};
+		F43826F8FF34DDC4C349821A /* XCRemoteSwiftPackageReference "SwiftEdgeTTS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/herrkaefer/SwiftEdgeTTS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7EA801757C05D4621A02C3BD /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D41639E1A1C16EE59A27190 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+		E6695247A0D89B8A093E1168 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C9828D0E11606BDE21BE2BB /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+		F51ADE66C47AC87954378EC2 /* SwiftEdgeTTS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F43826F8FF34DDC4C349821A /* XCRemoteSwiftPackageReference "SwiftEdgeTTS" */;
+			productName = SwiftEdgeTTS;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B964C429D9BE89FAF2A2F8BA /* Project object */;
+}

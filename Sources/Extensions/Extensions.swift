@@ -1,4 +1,14 @@
+import Foundation
 import SwiftUI
+
+extension String.Encoding {
+    /// 常见中文 TXT 文件使用的 GB18030 编码。
+    static let gb18030 = String.Encoding(
+        rawValue: CFStringConvertEncodingToNSStringEncoding(
+            CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue)
+        )
+    )
+}
 
 extension Color {
     static let appBackground = Color(UIColor.systemBackground)

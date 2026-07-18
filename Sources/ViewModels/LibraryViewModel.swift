@@ -24,7 +24,11 @@ final class LibraryViewModel: ObservableObject {
         Task {
             do {
                 let loadedBooks = try database.fetchAllBooks()
-                self.books = loadedBooks
+                self.books = loadedBooks.map { book in
+                    var book = book
+                    book.isFileMissing = !BookStorage.fileExists(for: book.filePath)
+                    return book
+                }
             } catch {
                 self.errorMessage = "加载书架失败: \(error.localizedDescription)"
             }
@@ -35,16 +39,23 @@ final class LibraryViewModel: ObservableObject {
     func importBook(from url: URL) {
         fileImportService.importFile(from: url) { [weak self] result in
             Task { @MainActor in
+                guard let self else { return }
                 switch result {
                 case .success(let book):
                     do {
-                        try self?.database.saveBook(book)
-                        self?.loadBooks()
+                        // 如果数据库里已经有同文件名的旧书(可能文件丢失后用户重导),
+                        // 就把旧书的 id 和阅读进度合并到新书,保留阅读历史。
+                        if let merged = try self.database.mergeReimportedBook(book) {
+                            print("[LibraryViewModel] 重新导入的书匹配到旧记录,已合并: \(merged.title)")
+                        } else {
+                            try self.database.saveBook(book)
+                        }
+                        self.loadBooks()
                     } catch {
-                        self?.errorMessage = "保存书籍失败: \(error.localizedDescription)"
+                        self.errorMessage = "保存书籍失败: \(error.localizedDescription)"
                     }
                 case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+                    self.errorMessage = error.localizedDescription
                 }
             }
         }
@@ -55,7 +66,8 @@ final class LibraryViewModel: ObservableObject {
             do {
                 try database.deleteBook(byId: book.id)
 
-                try? FileManager.default.removeItem(atPath: book.filePath)
+                let absolutePath = BookStorage.absoluteURL(for: book.filePath).path
+                try? FileManager.default.removeItem(atPath: absolutePath)
 
                 loadBooks()
             } catch {

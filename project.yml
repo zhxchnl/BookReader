@@ -24,6 +24,9 @@ packages:
   ZIPFoundation:
     url: https://github.com/weichsel/ZIPFoundation.git
     from: "0.9.18"
+  SwiftEdgeTTS:
+    url: https://github.com/herrkaefer/SwiftEdgeTTS.git
+    from: "1.0.0"
 
 targets:
   BookReader:
@@ -31,20 +34,42 @@ targets:
     platform: iOS
     sources:
       - path: Sources
+      - path: Packages/SherpaOnnx/Sources/SherpaOnnx
       - path: Resources
+        excludes:
+          - "Models/**"   # 排除，不随包分发（用下面的方式按模型分发）
+      - path: Resources/Models/kokoro-zh
+        buildPhase: resources
+        type: folder
+        excludes:
+          - "kokoro-multi-lang-v1_0/**"
+          - "kokoro-multi-lang-v1_1/**"
+      - path: Resources/Models/matcha-zh
+        buildPhase: resources
+        type: folder
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.bookreader.app
-        INFOPLIST_KEY_CFBundleIdentifier: com.bookreader.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.zxcstc123.bookreader
+        INFOPLIST_KEY_CFBundleIdentifier: com.zxcstc123.bookreader
         INFOPLIST_KEY_CFBundleDisplayName: "书阅读"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: ""
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) SHERPA_ONNX_ENABLED
+        SHERPA_SLICE[sdk=iphonesimulator*]: ios-arm64_x86_64-simulator
+        SHERPA_SLICE[sdk=iphoneos*]: ios-arm64
+        HEADER_SEARCH_PATHS: $(inherited) $(SRCROOT)/Packages/SherpaOnnx/Frameworks/onnxruntime.xcframework/$(SHERPA_SLICE)/Headers
+        OTHER_LDFLAGS: $(inherited) -lc++ -force_load $(SRCROOT)/Packages/SherpaOnnx/Frameworks/onnxruntime.xcframework/$(SHERPA_SLICE)/libonnxruntime.a
     dependencies:
       - package: SQLite.swift
         product: SQLite
       - package: ZIPFoundation
+        product: ZIPFoundation
+      - package: SwiftEdgeTTS
+        product: SwiftEdgeTTS
+      - framework: Packages/SherpaOnnx/Frameworks/sherpa-onnx.xcframework
+        embed: false
 
 schemes:
   BookReader:

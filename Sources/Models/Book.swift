@@ -35,6 +35,13 @@ struct Book: Identifiable, Codable, Equatable {
     var lastReadDate: Date?
     var dateAdded: Date
 
+    /// 运行时状态:文件是否还存在于沙盒中。不参与 Codable,避免污染数据库结构。
+    var isFileMissing: Bool = false
+
+    enum CodingKeys: String, CodingKey {
+        case id, title, author, format, filePath, fileSize, coverImageData, currentProgress, lastReadDate, dateAdded
+    }
+
     init(
         id: UUID = UUID(),
         title: String,
@@ -45,7 +52,8 @@ struct Book: Identifiable, Codable, Equatable {
         coverImageData: Data? = nil,
         currentProgress: Double = 0,
         lastReadDate: Date? = nil,
-        dateAdded: Date = Date()
+        dateAdded: Date = Date(),
+        isFileMissing: Bool = false
     ) {
         self.id = id
         self.title = title
@@ -57,6 +65,7 @@ struct Book: Identifiable, Codable, Equatable {
         self.currentProgress = currentProgress
         self.lastReadDate = lastReadDate
         self.dateAdded = dateAdded
+        self.isFileMissing = isFileMissing
     }
 
     var formattedFileSize: String {

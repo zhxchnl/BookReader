@@ -3,6 +3,7 @@ import UniformTypeIdentifiers
 
 struct LibraryView: View {
     @EnvironmentObject var viewModel: LibraryViewModel
+    @ObservedObject private var ttsService = TTSService.shared
     @State private var showingImporter = false
     @State private var showingDeleteAlert = false
     @State private var bookToDelete: Book?
@@ -56,6 +57,53 @@ struct LibraryView: View {
             } message: {
                 Text(viewModel.errorMessage ?? "")
             }
+            .overlay(alignment: .bottomTrailing) {
+                if shouldShowAudioControl {
+                    homeAudioControlButton
+                        .padding(.trailing, 20)
+                        .padding(.bottom, 24)
+                }
+            }
+        }
+    }
+
+    private var shouldShowAudioControl: Bool {
+        ttsService.isPlaying || ttsService.isPaused
+    }
+
+    private var homeAudioControlButton: some View {
+        HStack(spacing: 10) {
+            Button(action: { ttsService.skipToPreviousSentence() }) {
+                Image(systemName: "backward.end.fill")
+            }
+
+            Button(action: { toggleHomeTTS() }) {
+                Image(systemName: ttsService.isPlaying ? "pause.fill" : "play.fill")
+                    .font(.title2)
+                    .foregroundColor(.white)
+                    .frame(width: 36, height: 36)
+                    .background(.blue, in: Circle())
+            }
+
+            Button(action: { ttsService.skipToNextSentence() }) {
+                Image(systemName: "forward.end.fill")
+            }
+        }
+        .font(.title3)
+        .foregroundColor(.primary)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .background(.ultraThinMaterial, in: Capsule())
+        .shadow(color: .black.opacity(0.18), radius: 10, x: 0, y: 4)
+        .transition(.move(edge: .trailing).combined(with: .opacity))
+        .animation(.spring(response: 0.25, dampingFraction: 0.8), value: shouldShowAudioControl)
+    }
+
+    private func toggleHomeTTS() {
+        if ttsService.isPlaying {
+            ttsService.pause()
+        } else if ttsService.isPaused {
+            ttsService.resume()
         }
     }
 
@@ -87,16 +135,29 @@ struct LibraryView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(viewModel.books) { book in
-                    NavigationLink(destination: ReaderView(book: book).environmentObject(viewModel)) {
+                    if book.isFileMissing {
                         BookCardView(book: book)
-                    }
-                    .buttonStyle(.plain)
-                    .contextMenu {
-                        Button(role: .destructive) {
-                            bookToDelete = book
-                            showingDeleteAlert = true
-                        } label: {
-                            Label("删除", systemImage: "trash")
+                            .opacity(0.55)
+                            .contextMenu {
+                                Button(role: .destructive) {
+                                    bookToDelete = book
+                                    showingDeleteAlert = true
+                                } label: {
+                                    Label("删除", systemImage: "trash")
+                                }
+                            }
+                    } else {
+                        NavigationLink(destination: ReaderView(book: book).environmentObject(viewModel)) {
+                            BookCardView(book: book)
+                        }
+                        .buttonStyle(.plain)
+                        .contextMenu {
+                            Button(role: .destructive) {
+                                bookToDelete = book
+                                showingDeleteAlert = true
+                            } label: {
+                                Label("删除", systemImage: "trash")
+                            }
                         }
                     }
                 }
@@ -158,6 +219,12 @@ struct BookCardView: View {
                     .font(.caption2)
                     .foregroundColor(.secondary)
                     .lineLimit(1)
+
+                if book.isFileMissing {
+                    Text("文件丢失,请重新导入")
+                        .font(.caption2)
+                        .foregroundColor(.red)
+                }
             }
 
             if book.currentProgress > 0 {

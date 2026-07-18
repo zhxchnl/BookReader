@@ -31,19 +31,23 @@ final class BookParserService {
     private init() {}
 
     func parseBook(at path: String, format: BookFormat) throws -> ParsedBook {
+        // 兼容老数据:数据库里可能是绝对路径,也可能是相对路径,统一还原为绝对路径。
+        let absoluteURL = BookStorage.absoluteURL(for: path)
+        let absolutePath = absoluteURL.path
+
         switch format {
         case .txt:
-            return try parseTxt(at: path)
+            return try parseTxt(at: absolutePath)
         case .epub:
-            return try parseEpub(at: path)
+            return try parseEpub(at: absolutePath)
         case .pdf:
-            return try parsePdf(at: path)
+            return try parsePdf(at: absolutePath)
         }
     }
 
     private func parseTxt(at path: String) throws -> ParsedBook {
         let url = URL(fileURLWithPath: path)
-        let content = try String(contentsOf: url, encoding: .utf8)
+        let content = try readTextFileContents(from: url)
 
         let cleanedContent = cleanText(content)
         let chapters = splitIntoChapters(cleanedContent)
@@ -56,24 +60,59 @@ final class BookParserService {
         )
     }
 
+    /// 读取 TXT 内容,按 BOM 与常见中文编码自动识别(UTF-8 / UTF-16 / GB18030)。
+    private func readTextFileContents(from url: URL) throws -> String {
+        let data = try Data(contentsOf: url, options: [.mappedIfSafe])
+        guard !data.isEmpty else { return "" }
+
+        if data.starts(with: [0xEF, 0xBB, 0xBF]),
+           let text = String(data: data.dropFirst(3), encoding: .utf8) {
+            return text
+        }
+        if data.starts(with: [0xFF, 0xFE]),
+           let text = String(data: data, encoding: .utf16LittleEndian) {
+            return stripBOM(from: text)
+        }
+        if data.starts(with: [0xFE, 0xFF]),
+           let text = String(data: data, encoding: .utf16BigEndian) {
+            return stripBOM(from: text)
+        }
+
+        for encoding in [String.Encoding.utf8, .utf16, .gb18030] {
+            if let text = String(data: data, encoding: encoding), !text.isEmpty {
+                return stripBOM(from: text)
+            }
+        }
+
+        throw BookParseError.encodingError
+    }
+
+    private func stripBOM(from text: String) -> String {
+        text.trimmingCharacters(in: CharacterSet(charactersIn: "\u{FEFF}"))
+    }
+
     private func cleanText(_ text: String) -> String {
         var result = text
 
         result = result.replacingOccurrences(of: "\r\n", with: "\n")
         result = result.replacingOccurrences(of: "\r", with: "\n")
+        result = result.replacingOccurrences(of: "\u{00A0}", with: " ")
+        result = result.replacingOccurrences(of: "\t", with: " ")
 
-        let patterns = [
-            "\n{3,}",
-            " {2,}"
+        let replacements: [(pattern: String, template: String)] = [
+            ("\\n[ \\t]+", "\n"),
+            ("[ \\t]+\\n", "\n"),
+            ("\\n{3,}", "\n\n"),
+            ("[ \\t]{2,}", " ")
         ]
 
-        for pattern in patterns {
-            let regex = try? NSRegularExpression(pattern: pattern, options: [])
+        for replacement in replacements {
+            let regex = try? NSRegularExpression(pattern: replacement.pattern, options: [])
             result = regex?.stringByReplacingMatches(
                 in: result,
                 options: [],
                 range: NSRange(result.startIndex..., in: result),
-                withTemplate: "\n"
+                withTemplate: replacement.template
             ) ?? result
         }
 
@@ -211,6 +250,16 @@ final class BookParserService {
 
         var content = htmlString
 
+        content = content.replacingOccurrences(
+            of: "(?is)<(script|style)[^>]*>.*?</\\1>",
+            with: " ",
+            options: .regularExpression
+        )
+        content = content.replacingOccurrences(
+            of: "(?i)</?(p|div|h[1-6]|li|br|tr|section|article|blockquote)[^>]*>",
+            with: "\n",
+            options: .regularExpression
+        )
         content = content.replacingOccurrences(of: "<[^>]+>", with: " ", options: .regularExpression)
 
         let staticEntities: [(String, String)] = [
@@ -242,8 +291,7 @@ final class BookParserService {
             content = mutable as String
         }
 
-        content = content.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
-        return content.trimmingCharacters(in: .whitespacesAndNewlines)
+        return cleanText(content)
     }
 
     private func parsePdf(at path: String) throws -> ParsedBook {

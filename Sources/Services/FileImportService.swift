@@ -42,11 +42,7 @@ final class FileImportService: ObservableObject {
         }
 
         do {
-            let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let booksDirectory = documentsPath.appendingPathComponent("Books", isDirectory: true)
-
-            try FileManager.default.createDirectory(at: booksDirectory, withIntermediateDirectories: true)
-
+            let booksDirectory = BookStorage.booksDirectoryURL
             let fileName = sourceURL.lastPathComponent
             let destinationURL = booksDirectory.appendingPathComponent(fileName)
 
@@ -75,12 +71,15 @@ final class FileImportService: ObservableObject {
 
             let title = extractTitle(from: sourceURL.deletingPathExtension().lastPathComponent, format: bookFormat)
 
+            // 只存相对路径,避免沙盒容器 UUID 变化后路径失效。
+            let storedPath = BookStorage.relativePath(for: destinationURL)
+
             let book = Book(
                 id: bookId,
                 title: title,
                 author: "未知作者",
                 format: bookFormat,
-                filePath: destinationURL.path,
+                filePath: storedPath,
                 fileSize: fileSize,
                 coverImageData: nil,
                 currentProgress: 0,
